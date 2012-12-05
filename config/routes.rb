@@ -1,5 +1,5 @@
 ProjectManager::Application.routes.draw do
 
-  root :to => 'mainSiteController#index'
+  root :to => 'mainSite#index'
 
 end

@@ -1,0 +1,26 @@
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">	
+			<%= link_to_function "| News", "", id: "logo" %>
+			<%= link_to_function "| Blog", "", id: "logo" %>
+			<%= link_to_function "| Team description", "", id: "logo" %>
+			<%= link_to_function "| Gallery", "", id: "logo" %>
+		</div>
+	</div>
+</header>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3">			
+			Side
+		</div>
+
+		<div class="span9">
+			<div id="home-page"></div>
+		</div>
+	</div>
+</div>	
+
+<%= render 'layouts/footer' %>	
+
+<%= render 'templates/home_page_template' %>	
