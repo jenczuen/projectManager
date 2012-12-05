@@ -12,4 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap
+//= require handlebars-1.0.rc.1
+//= require underscore
+//= require YouAreDaBomb
+//= require utils
+//= require sugar-1.3.min
+//= require database_api
+//= require use_cases
+//= require gui
+//= require glue
+//= require models
+//= require main
