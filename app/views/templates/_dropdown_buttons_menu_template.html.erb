@@ -1,0 +1,23 @@
+<script type="x-handlebars-template" id="dropdown-buttons-menu-template">
+	<div class="row">
+
+		{{#each buttons}}
+		<div class="span2">
+			<div class="btn-group">
+				<button class="btn btn-large btn-success">{{ this.name }}</button>
+				<button class="btn btn-large btn-success dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				
+				<ul class="dropdown-menu">
+				{{#each this.links}}
+					<li><a href="#">{{ this }}</a></li>
+				{{/each}}
+				</ul>
+			</div>
+		</div>
+		{{/each}}
+
+	</div>
+
+</script>
