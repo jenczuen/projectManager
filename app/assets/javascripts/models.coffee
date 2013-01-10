@@ -6,3 +6,6 @@ class User
 
 class Post
 	constructor: (@title, @content, @category_id, @autor_id, @id) ->
+
+class Image
+	constructor: (@title, @description, @url, @category_id, @id) ->

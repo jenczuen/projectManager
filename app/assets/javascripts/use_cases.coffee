@@ -3,10 +3,12 @@ class UseCases
 		@categories = []
 		@users = []
 		@posts = []
+		@images = []
 		@currentCategory = null
 		@currentPosts = []
 		@currentPost = null
 		@currentUsers = []
+		@currentImages = []
 
 	setInitialCategories: (categories) =>
 		@categories = categories
@@ -17,6 +19,9 @@ class UseCases
 	setInitialPosts: (posts) =>
 		@posts = posts
 
+	setInitialImages: (images) =>
+		@images = images
+
 	init: =>
 
 	showHomePage: =>
@@ -24,6 +29,10 @@ class UseCases
 	showBlog: (category_id) =>
 		@currentCategory = @categories.find((category) -> category.id == category_id)
 		@currentPosts = @posts.filter (post) -> post.category_id == category_id
+
+	showGallery: (category_id) =>
+		@currentCategory = @categories.find((category) -> category.id == category_id)
+		@currentImages = @images.filter (image) -> image.category_id == category_id
 
 	showMembers: (category_id) =>
 		@currentCategory = @categories.find((category) -> category.id == category_id)

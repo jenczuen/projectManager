@@ -1,0 +1,11 @@
+<script type="x-handlebars-template" id="gallery-template">
+	<h1>{{ category }} - galeria</h1>
+
+	{{#each images}}
+		<h2>{{ this.title }}</h2>
+		<center>
+			<p>{{ this.description }}</p>
+			<img src={{ this.url }} alt={{ this.title }}> 
+		</center>
+	{{/each}}
+</script>

@@ -4,13 +4,14 @@ class DatabaseApi
 		@categories = []
 		@users = []
 		@posts = []
+		@images = []
 
 	flush: =>
 		@json_data = null
 		@categories = []
 		@users = []
 		@posts = []
-
+		@images = []
 
 	saveJsonData: (json_data) ->
 		@json_data = json_data
@@ -90,6 +91,34 @@ class DatabaseApi
 							))
 
 		@posts
+
+	getImages: =>
+		@images.add( new Image(
+								"Obrazek1",
+								"Wesoly opis1",
+								"url/do/obrazka", 
+								1, 1
+							))
+		@images.add( new Image(
+								"Obrazek2",
+								"Wesoly opis2",
+								"url/do/obrazka", 
+								2, 2
+							))
+		@images.add( new Image(
+								"Obrazek3",
+								"Wesoly opis3",
+								"url/do/obrazka", 
+								3, 3
+							))
+		@images.add( new Image(
+								"Obrazek4",
+								"Wesoly opis4",
+								"url/do/obrazka", 
+								3, 4
+							))
+
+		@images
 
 
 ### database api 

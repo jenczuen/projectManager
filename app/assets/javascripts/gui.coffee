@@ -4,6 +4,7 @@ class Gui
 	clearAll: =>
 		$("#blog").html("")
 		$("#members").html("")
+		$("#gallery").html("")
 
 	showDropdownMenu: (categories) =>
 		source = $("#dropdown-buttons-menu-template").html()
@@ -23,7 +24,7 @@ class Gui
 		for category in categories
 			data.buttons[1].links.push({
 									category: category.name,
-									function_name: ""
+									function_name: "useCase.showGallery("+category.id+")"
 								})
 		###czlonkowie###
 		for category in categories
@@ -57,6 +58,23 @@ class Gui
 
 		html = template(data)
 		$("#blog").html(html)
+
+	showGallery: (category, images) =>
+		source = $("#gallery-template").html()
+		template = Handlebars.compile(source)
+		data = { 
+					category: category.name
+					images: []
+				}
+		console.log(images)
+		for image in images
+			data.images.push({
+								title: image.title,
+								description: image.description,
+								url: image.url
+							})
+		html = template(data)
+		$("#gallery").html(html)
 
 	showMembers: (category, users) =>
 		source = $("#members-template").html()
