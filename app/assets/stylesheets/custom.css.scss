@@ -9,6 +9,11 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+.container {
+  background: $grayMediumLight;
+  padding-top: 10px;
+}
+
 /* universal */
 html {
   overflow-y: scroll;
@@ -102,12 +107,7 @@ footer {
   }
 }
 
-/* cart-small */
-.cart-small {
-  margin-top: 40px;
-}
-
-/* search-small-menu */
-.search-small-menu {
-  margin-bottom: 10px;
+/* dropdown menu */
+#dropdown-buttons-menu {
+  float: center;
 }

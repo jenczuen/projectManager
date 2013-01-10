@@ -3,7 +3,8 @@ class Glue
 		AutoBind(@gui, @useCase)
 
 		Before(@useCase, 'showHomePage', => @gui.clearAll())
-		After(@useCase, 'showHomePage', => @gui.showHomePage())		
+		After(@useCase, 'showHomePage', => @gui.showDropdownMenu())		
+#		After(@useCase, 'showHomePage', => @gui.showHomePage())		
 
 		LogAll(@useCase)
 		LogAll(@gui)
