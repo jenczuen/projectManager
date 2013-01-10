@@ -5,6 +5,13 @@ class DatabaseApi
 		@users = []
 		@posts = []
 
+	flush: =>
+		@json_data = null
+		@categories = []
+		@users = []
+		@posts = []
+
+
 	saveJsonData: (json_data) ->
 		@json_data = json_data
 
@@ -131,12 +138,4 @@ class DatabaseApi
 									item.id
 								))
 		@posts
-
-
-	flush: =>
-		@json_data = null
-		@categories = []
-		@users = []
-		@posts = []
-
 ###
