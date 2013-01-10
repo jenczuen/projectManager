@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(:version => 20130110210124) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "categories_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "category_id"
+  end
+
   create_table "people", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -35,11 +40,6 @@ ActiveRecord::Schema.define(:version => 20130110210124) do
     t.string   "eMail"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "users_categories", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "category_id"
   end
 
 end
