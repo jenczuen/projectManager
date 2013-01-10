@@ -4,7 +4,7 @@ class Main
 		window.useCase = new UseCases()
 		databaseApi = new DatabaseApi()
 		glue = new Glue(useCase, gui, databaseApi)
-#		useCase.init()
+		useCase.init()
 		useCase.showHomePage()
 
 $(-> new Main())

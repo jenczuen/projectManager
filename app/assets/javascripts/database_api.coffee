@@ -1,9 +1,9 @@
 class DatabaseApi
 	constructor: ->
 		@json_data = null
-		@categories = null
-		@users = null
-		@posts = null
+		@categories = []
+		@users = []
+		@posts = []
 
 	saveJsonData: (json_data) ->
 		@json_data = json_data
@@ -55,7 +55,8 @@ class DatabaseApi
 								"Prezes",
 								"Zarzadu",
 								"Imie mowi samo za siebie",
-								[3], 5
+								[3], 
+								5
 							))
 		@users
 
@@ -130,11 +131,12 @@ class DatabaseApi
 									item.id
 								))
 		@posts
-###
 
 
 	flush: =>
 		@json_data = null
-		@categories = null
-		@users = null
-		@posts = null
+		@categories = []
+		@users = []
+		@posts = []
+
+###
