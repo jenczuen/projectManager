@@ -7,7 +7,7 @@ class Glue
 		Before(@useCase, 'init', => @storage.getPosts())
 
 		Before(@useCase, 'showHomePage', => @gui.clearAll())
-		After(@useCase, 'showHomePage', => @gui.showDropdownMenu())		
+		After(@useCase, 'showHomePage', => @gui.showDropdownMenu(@storage.categories))
 #		After(@useCase, 'showHomePage', => @gui.showHomePage())		
 
 		LogAll(@useCase)

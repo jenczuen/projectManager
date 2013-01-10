@@ -4,35 +4,18 @@ class Gui
 	clearAll: =>
 		$("#home-page").html("")
 
-	showDropdownMenu: =>
+	showDropdownMenu: (categories) =>
 		source = $("#dropdown-buttons-menu-template").html()
 		template = Handlebars.compile(source)
 		data = { buttons: [
-							{ 
-								name: "Blog",
-								links: [
-											"Mechanicy",
-											"Elektronicy",
-											"Programisci"
-										]
-							},
-							{ 
-								name: "Galeria",
-								links: [
-											"Mechanicy",
-											"Elektronicy",
-											"Programisci"
-										]
-							},
-							{ 
-								name: "Czlonkowie",
-								links: [
-											"Mechanicy",
-											"Elektronicy",
-											"Programisci"
-										]
-							}
+							{ name: "Blog"		, links: [] },
+							{ name: "Galeria"	, links: [] },
+							{ name: "Czlonkowie", links: [] }
 						]}
+		for button in data.buttons
+			for category in categories
+				button.links.push(category.name)
+
 		html = template(data)
 		$("#dropdown-buttons-menu").html(html)
 
