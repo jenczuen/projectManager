@@ -1,0 +1,5 @@
+class User < ActiveRecord::Base
+  attr_accessible :firstName, :secondName, :description
+
+  has_many :categories
+end
