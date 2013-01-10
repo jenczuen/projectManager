@@ -1,0 +1,12 @@
+<script type="x-handlebars-template" id="blog-template">
+	<h1>{{ category }}</h1>
+
+	{{#each posts}}
+		<h2>{{ this.title }}</h2>
+		<center>
+			<p>{{ this.content }}</p>
+		</center>
+	{{/each}}
+
+
+</script>

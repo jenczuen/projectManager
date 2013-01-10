@@ -27,4 +27,4 @@ class UseCases
 
 	showMembers: (category_id) =>
 		@currentCategory = @categories.find((category) -> category.id == category_id)
-		@currentUsers = @users.filter (user) -> user.category_id == category_id
+		@currentUsers = @users.filter (user) -> user.categories.indexOf(category_id) != -1 

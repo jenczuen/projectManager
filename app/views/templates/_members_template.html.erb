@@ -1,0 +1,12 @@
+<script type="x-handlebars-template" id="members-template">
+	<h1>{{ category }}</h1>
+
+	{{#each members}}
+		<h2>{{ this.firstName }} {{ this.secondName }}</h2>
+		<center>
+			<p>{{ this.description }}</p>
+		</center>
+	{{/each}}
+
+
+</script>

@@ -16,5 +16,8 @@ class Glue
 		Before(@useCase, 'showBlog', => @gui.clearAll())
 		After(@useCase, 'showBlog', => @gui.showBlog(@useCase.currentCategory, @useCase.currentPosts))
 
+		Before(@useCase, 'showMembers', => @gui.clearAll())
+		After(@useCase, 'showMembers', => @gui.showMembers(@useCase.currentCategory, @useCase.currentUsers))
+
 		LogAll(@useCase)
 		LogAll(@gui)

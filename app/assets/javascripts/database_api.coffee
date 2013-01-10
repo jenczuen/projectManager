@@ -83,6 +83,12 @@ class DatabaseApi
 								"Zagonilismy frajernie do pracy!",
 								3, 5, 3
 							))
+		@posts.add( new Post(
+								"Idzie spoko!",
+								"Juz mamy wszystkie katowniki",
+								1, 2, 4
+							))
+
 		@posts
 
 
