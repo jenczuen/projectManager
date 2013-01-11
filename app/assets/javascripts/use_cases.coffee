@@ -9,6 +9,7 @@ class UseCases
 		@currentPost = null
 		@currentUsers = []
 		@currentImages = []
+		@currentUser = null
 
 	setInitialCategories: (categories) =>
 		@categories = categories

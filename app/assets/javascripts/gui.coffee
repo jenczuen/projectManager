@@ -92,3 +92,12 @@ class Gui
 
 		html = template(data)
 		$("#members").html(html)
+
+	showLoginSection: (user) =>
+		source = $("#login-section-template").html()
+		template = Handlebars.compile(source)
+		data = { 
+					test: "test"
+				}
+		html = template(data)
+		$("#login-section").html(html)
