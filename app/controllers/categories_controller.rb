@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   def all
     categories = Category.all
 
+    puts current_user.eMail
+
     respond_to do |format|
       format.json { render json: categories }
     end

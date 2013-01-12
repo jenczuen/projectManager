@@ -2,8 +2,8 @@ ProjectManager::Application.routes.draw do
 
   root to: 'mainSite#index'
 
-  match '/signin',                  to: 'sessions#new'
-  match '/signout',                 to: 'sessions#destroy',     via: :post
+  match '/api/signin',              to: 'sessions#create',      via: :post
+  match '/api/signout',             to: 'sessions#destroy',     via: :post
 
   match "/api/users/create",        to: "users#create",         via: :post
   match "/api/users/update",        to: "users#update",         via: :post
