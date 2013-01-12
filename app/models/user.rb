@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   before_save :create_remember_token
 
-
   attr_accessible :firstName, :secondName, :description, :eMail, :password, :password_confirmation
   has_secure_password
 
@@ -14,7 +13,6 @@ class User < ActiveRecord::Base
   private
   
   def create_remember_token
-    puts "dupa"
     self.remember_token = SecureRandom.urlsafe_base64
   end
 end
