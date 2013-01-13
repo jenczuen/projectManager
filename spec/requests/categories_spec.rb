@@ -31,6 +31,12 @@ describe "Categories" do
       
       response.header['Content-Type'].should include 'application/json' 
     end
+
+    it "returned all categories should be correct" do
+      get '/api/categories/all'
+
+      response.body.should eq(Category.all.to_json)
+    end 
     
     it "can get one category" do
       get '/api/categories/get', { id: @category.id }
@@ -44,6 +50,13 @@ describe "Categories" do
       response.header['Content-Type'].should include 'application/json'
     end
     
+    it "returned one category should be correct" do
+      get '/api/categories/get', { id: @category.id }
+      
+      response.body.should eq(@category.to_json)
+    end 
+    
+
     it "can't create new category" do
       post '/api/categories/create', { name: "Cat", description: "desc" }
       
