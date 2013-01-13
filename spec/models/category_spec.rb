@@ -14,6 +14,9 @@ describe "Category model" do
   describe "should have proper accessor methods" do
     it { should respond_to(:name) }
     it { should respond_to(:description) } 
+
+    it { should respond_to(:users) }
+    it { should respond_to(:posts) }
   end
   
   describe "data validation" do

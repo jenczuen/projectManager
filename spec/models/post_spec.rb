@@ -14,6 +14,9 @@ describe "Post model" do
   describe "should have proper accessor methods" do
     it { should respond_to(:title) }
     it { should respond_to(:content) } 
+
+    it { should respond_to(:user) }
+    it { should respond_to(:category ) }
   end
   
   describe "data validation" do

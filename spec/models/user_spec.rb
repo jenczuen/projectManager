@@ -22,7 +22,10 @@ describe "User model" do
     it { should respond_to(:description) } 
     it { should respond_to(:password_digest) } 
     it { should respond_to(:password) } 
-    it { should respond_to(:password_confirmation) } 
+    it { should respond_to(:password_confirmation) }
+ 
+    it { should respond_to(:categories) }
+    it { should respond_to(:posts) }
   end
 
   describe "data validation" do
