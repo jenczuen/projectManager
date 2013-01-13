@@ -2,9 +2,7 @@ class CategoriesController < ApplicationController
   def all
     categories = Category.all
 
-    respond_to do |format|
-      format.json { render json: categories }
-    end
+    render json: categories
   end
 
   def get
