@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
-  before_save :create_remember_token
-  before_save { |user| user.email = email.downcase }
-
   attr_accessible :firstName, :secondName, :description, :eMail, :password, :password_confirmation
   has_secure_password
+
+  has_and_belongs_to_many :categories
+  has_many :posts
+
+  before_save :create_remember_token
+  before_save { |user| user.email = email.downcase }
 
   validates :firstName, presence: true
   validates :secondName, presence: true
@@ -14,9 +17,6 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-
-  has_and_belongs_to_many :categories
-  has_many :posts
 
   private
   
