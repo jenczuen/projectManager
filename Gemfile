@@ -13,3 +13,4 @@ end
 
 gem "bcrypt-ruby", "~> 3.0.1"
 
+gem "rspec-rails", "~> 2.12.2"
