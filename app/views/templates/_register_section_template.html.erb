@@ -1,0 +1,30 @@
+<script type="x-handlebars-template" id="register-section-template">
+
+	<form name="login_form" action="" method="GET">
+		<label for="user_name">User name (login):</label>
+		<input id="user_name" name="user_name" size="30" style="width:130px" type="text"/>
+
+		<label for="password">Password: </label>
+		<input id="password" name="password" size="30" style="width:130px" type="text"/>
+
+		<label for="first_name">First Name:</label>
+		<input id="first_name" name="first_name" size="30" style="width:130px" type="text"/>
+
+		<label for="second_name">Second name:</label>
+		<input id="second_name" name="second_name" size="30" style="width:130px" type="text"/>
+
+		<label for="description">Your description:</label>
+		<input id="description" name="description" size="30" style="width:130px" type="text"/>
+
+		<label for="category">Category(ies) you are in:</label>
+		{{#each categories}}
+			<label >{{ this.name }}</label>
+			<input type="radio" id="radio" value="in" name={{ this.id }}> in <br>
+			<input type="radio" id="radio" value="out" name={{ this.id }} checked> out <br><br>
+		{{/each}}
+			
+		<br>
+		<input type="button" name="save" value="save" onClick="useCase.register(this.form)">
+	</form>
+
+</script>

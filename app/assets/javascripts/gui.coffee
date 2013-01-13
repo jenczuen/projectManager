@@ -6,6 +6,8 @@ class Gui
 		$("#members").html("")
 		$("#gallery").html("")
 		$("#creating-posts-section").html("")
+		$("#adding-image-section").html("")
+		$("#register-section").html("")		
 
 	showDropdownMenu: (categories) =>
 		source = $("#dropdown-buttons-menu-template").html()
@@ -66,6 +68,7 @@ class Gui
 		template = Handlebars.compile(source)
 		data = { 
 					category: category.name
+					function_name: "useCase.showAddingImageSection("+category.id+")"
 					images: []
 				}
 		console.log(images)
@@ -110,3 +113,22 @@ class Gui
 		data = { category: category.name }
 		html = template(data)
 		$("#creating-posts-section").html(html)
+
+	showAddingImageSection: (category) =>
+		source = $("#adding-image-section-template").html()
+		template = Handlebars.compile(source)
+		data = { category: category.name }
+		html = template(data)
+		$("#adding-image-section").html(html)
+
+	showRegisterSection: (categories) =>
+		source = $("#register-section-template").html()
+		template = Handlebars.compile(source)
+		data = { categories: []}
+		for category in categories
+			data.categories.push({
+									name: category.name
+									id: category.id
+								})
+		html = template(data)
+		$("#register-section").html(html)

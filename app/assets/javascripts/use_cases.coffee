@@ -8,8 +8,9 @@ class UseCases
 		@currentPosts = []
 		@currentPost = null
 		@currentUsers = []
-		@currentImages = []
 		@currentUser = null
+		@currentImages = []
+		@currentImage = null
 
 	setInitialCategories: (categories) =>
 		@categories = categories
@@ -48,4 +49,31 @@ class UseCases
 									form.content.value,
 									@currentCategory.id,
 								)
-		console.log(@currentPosts)
+
+	showAddingImageSection: (category_id) =>
+		@currentCategory = @categories.find((category) -> category.id == category_id)
+
+	addImage: (form) =>
+		@currentImage = new Image(
+									form.title.value,
+									form.description.value,
+									form.url.value,
+									@currentCategory.id,
+								)
+
+	showRegisterSection: () =>
+
+	register: (form) =>
+		ids = []
+		for radio in form.radio
+			if(radio.checked and radio.value == "in")
+				ids.push(parseInt(radio.name))
+		@currentUser = new User(
+									form.first_name.value,
+									form.second_name.value,
+									form.description.value,
+									ids
+								)
+###		
+	constructor: (@firstName, @secondName, @description, @categories, @id) ->
+###
