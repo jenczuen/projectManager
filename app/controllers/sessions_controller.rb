@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   helper SessionsHelper
 
   def create
-    user = User.find_by_eMail(params[:e_mail].downcase)
+    user = User.find_by_email(params[:e_mail].downcase)
     if user && user.authenticate(params[:password])
       cookies[:remember_token] = { value:   user.remember_token,
                                    expires: 2.days.from_now.utc }
