@@ -8,20 +8,17 @@ class CategoriesController < ApplicationController
   def get
     category = Category.find(params[:id])
 
-    respond_to do |format|
-      format.json { render json: category }
-    end
+    render json: category
   end
 
   def create
-    name   = params[:name]
-    description = params[:description]
-    
-    Category.create(name:        name,
-                    description: description)
-
-    respond_to do |format|
+    if signed_in?
+      Category.create(name: params[:name],
+                    description: params[:description])
+      
       format.all { render :nothing => true, :status => 200 }
+    else
+      render json: "Guests cannot create new categories!", status: 401
     end
   end
   
