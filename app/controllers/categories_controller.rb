@@ -16,35 +16,35 @@ class CategoriesController < ApplicationController
       Category.create(name: params[:name],
                     description: params[:description])
       
-      format.all { render :nothing => true, :status => 200 }
+      render json: :nothing, :status => 200
     else
-      render json: "Guests cannot create new categories!", status: 401
+      render json: "Guest can't create new categories!", status: 401
     end
   end
   
   def update
-    name   = params[:name]
-    description = params[:description]
-        
-    category = Category.find(params[:id])
-
-    category.name = name
-    category.description = description
-
-    category.save
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+    if signed_in?
+      category = Category.find(params[:id])
+      
+      category.name = params[:name]
+      category.description = params[:description]      
+      category.save
+      
+      render json: :nothing, :status => 200
+    else
+      render json: "Guest can't update categories!", status: 401
     end
   end
 
   def destroy
-    category = Category.find(params[:id])
+    if signed_in?
+      category = Category.find(params[:id])
+      
+      category.delete
 
-    category.delete
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+      render json: :nothing, :status => 200      
+     else
+      render json: "Guest can't delete categories!", status: 401
     end
   end
 end

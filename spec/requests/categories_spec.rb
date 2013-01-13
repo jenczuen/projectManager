@@ -22,7 +22,7 @@ describe "Categories" do
   describe "When user is a guest" do
     it "can get all categories" do
       get '/api/categories/all'
-      
+
       response.status.should be(200)
     end
     
@@ -92,7 +92,7 @@ describe "Categories" do
       response.header['Content-Type'].should include 'application/json'
     end
     
-    it "update category error message should be correct" do
+    it "delete category error message should be correct" do
       post '/api/categories/destroy', { id: @category.id }
       
       response.body.should include "Guest can't delete categories!"
