@@ -28,7 +28,7 @@ class UseCases
 	showHomePage: =>
 
 	showBlog: (category_id) =>
-		@currentCategory = @categories.find((category) -> category.id == category_id)
+		@currentCategory = @categories.find((category) -> category.id == category_id)	
 		@currentPosts = @posts.filter (post) -> post.category_id == category_id
 
 	showGallery: (category_id) =>
@@ -38,3 +38,14 @@ class UseCases
 	showMembers: (category_id) =>
 		@currentCategory = @categories.find((category) -> category.id == category_id)
 		@currentUsers = @users.filter (user) -> user.categories.indexOf(category_id) != -1 
+
+	showCreatingPostsSection: (category_id) =>
+		@currentCategory = @categories.find((category) -> category.id == category_id)	
+
+	createPost: (form) =>
+		@currentPosts = new Post(
+									form.title.value,
+									form.content.value,
+									@currentCategory.id,
+								)
+		console.log(@currentPosts)

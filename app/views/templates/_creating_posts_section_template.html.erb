@@ -1,0 +1,14 @@
+<script type="x-handlebars-template" id="creating-posts-section-template">
+	<h1>Add post to category - {{ category }}</h1>
+
+	<form name="new_post_form" action="" method="GET">
+		<label for="title">Title:</label>
+		<input id="title" name="title" size="30" style="width:130px" type="text" />
+
+		<label for="content">Content</label>
+		<input id="content" name="content" size="100" style="width:130px" type="text" />
+			
+		<br>	
+		<input type="button" name="button" value="Save" onClick="useCase.createPost(this.form)">
+	</form>
+</script>

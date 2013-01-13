@@ -5,6 +5,7 @@ class Gui
 		$("#blog").html("")
 		$("#members").html("")
 		$("#gallery").html("")
+		$("#creating-posts-section").html("")
 
 	showDropdownMenu: (categories) =>
 		source = $("#dropdown-buttons-menu-template").html()
@@ -48,6 +49,7 @@ class Gui
 		template = Handlebars.compile(source)
 		data = { 
 					category: category.name
+					function_name: "useCase.showCreatingPostsSection("+category.id+")"
 					posts: []
 				}
 		for post in posts
@@ -101,3 +103,10 @@ class Gui
 				}
 		html = template(data)
 		$("#login-section").html(html)
+
+	showCreatingPostsSection: (category) =>
+		source = $("#creating-posts-section-template").html()
+		template = Handlebars.compile(source)
+		data = { category: category.name }
+		html = template(data)
+		$("#creating-posts-section").html(html)

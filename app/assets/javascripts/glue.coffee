@@ -28,5 +28,14 @@ class Glue
 		After(@useCase, 'showMembers', => @gui.showMembers(@useCase.currentCategory, @useCase.currentUsers))
 		After(@useCase, 'showMembers', => @gui.showLoginSection(@useCase.currentUser))
 
+		Before(@useCase, 'showCreatingPostsSection', => @gui.clearAll())
+		After(@useCase, 'showCreatingPostsSection', => @gui.showCreatingPostsSection(@useCase.currentCategory))
+		After(@useCase, 'showCreatingPostsSection', => @gui.showLoginSection(@useCase.currentUser))
+
+		### to czeka na podpiecie do api ###
+		After(@useCase, 'createPost', => useCase.posts.push(useCase.currentPosts))
+		### end ###
+		After(@useCase, 'createPost', => useCase.showBlog(useCase.currentCategory.id))
+
 		LogAll(@useCase)
 		LogAll(@gui)
