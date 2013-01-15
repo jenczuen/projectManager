@@ -15,6 +15,7 @@ class Glue
 
 
 		Before(@useCase, 'showHomePage', => @gui.clearAll())
+		After(@useCase, 'showHomePage', => @gui.showHeader())
 		After(@useCase, 'showHomePage', => @gui.showDropdownMenu(@useCase.categories))
 		After(@useCase, 'showHomePage', => @gui.showLoginSection(@useCase.currentUser))
 
