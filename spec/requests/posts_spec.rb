@@ -150,30 +150,6 @@ describe "Posts" do
     it "returned all posts should be correct" do
       get '/api/posts/all'
 
-      response.body.should eq(Post.all.to_json)
-    end 
-    
-    it "can get one post" do
-      get '/api/posts/get', { id: @post.id }
-      
-      response.status.should be(200)
-    end
-    
-    it "one post format is json" do
-      get '/api/posts/get', { id: @post.id }
-      
-      response.header['Content-Type'].should include 'application/json'
-    end
-    
-    it "returned one post should be correct" do
-      get '/api/posts/get', { id: @post.id }
-      
-      response.body.should eq(@post.to_json)
-    end 
-    
-    it "can create new post" do
-      post '/api/posts/create', { title: "New Post", content: "content" }
-
       response.status.should be(200)
     end
     
@@ -213,8 +189,8 @@ describe "Posts" do
     it "after update, post should have new values" do
       post '/api/posts/update', { id: @post.id, title: "Updated Title", content: "Updated description." }
       
-      Post.find(@post.id).title.should eq("Updated title")
-      Post.find(@post.id).content.should eq("Updated description")
+      Post.find(@post.id).title.should eq("Updated Title")
+      Post.find(@post.id).content.should eq("Updated description.")
     end
     
     it "can delete a post" do
