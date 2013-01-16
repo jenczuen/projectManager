@@ -216,7 +216,7 @@ describe "Posts" do
     post '/api/signout'
 
     User.delete_all
-    Category.delete_all
+    Post.delete_all
   end
   
 end
