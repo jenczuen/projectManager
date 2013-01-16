@@ -2,12 +2,14 @@ class Gui
 	constructor: ->
 
 	clearAll: =>
-		$("#blog").html("")
-		$("#members").html("")
-		$("#gallery").html("")
-		$("#creating-posts-section").html("")
-		$("#adding-image-section").html("")
-		$("#register-section").html("")		
+		$("#content").html("")
+
+	showHeader: =>
+		source = $("#header-template").html()
+		template = Handlebars.compile(source)
+		data = {}
+		html = template(data)
+		$("#header").html(html)
 
 	showDropdownMenu: (categories) =>
 		source = $("#dropdown-buttons-menu-template").html()
@@ -39,14 +41,8 @@ class Gui
 		html = template(data)
 		$("#dropdown-buttons-menu").html(html)
 
-	showHomePage: =>
-		source = $("#home-page-template").html()
-		template = Handlebars.compile(source)
-		data = {}
-		html = template(data)
-		$("#home-page").html(html)
-
 	showBlog: (category, posts) =>
+		$('#content').append('<div id="blog"></div>')
 		source = $("#blog-template").html()
 		template = Handlebars.compile(source)
 		data = { 
@@ -64,6 +60,7 @@ class Gui
 		$("#blog").html(html)
 
 	showGallery: (category, images) =>
+		$('#content').append('<div id="gallery"></div>')
 		source = $("#gallery-template").html()
 		template = Handlebars.compile(source)
 		data = { 
@@ -82,6 +79,7 @@ class Gui
 		$("#gallery").html(html)
 
 	showMembers: (category, users) =>
+		$('#content').append('<div id="members"></div>')
 		source = $("#members-template").html()
 		template = Handlebars.compile(source)
 		data = { 
@@ -99,6 +97,7 @@ class Gui
 		$("#members").html(html)
 
 	showLoginSection: (user) =>
+		$('#content').append('<div id="login-section"></div>')
 		source = $("#login-section-template").html()
 		template = Handlebars.compile(source)
 		data = { 
@@ -108,6 +107,7 @@ class Gui
 		$("#login-section").html(html)
 
 	showCreatingPostsSection: (category) =>
+		$('#content').append('<div id="creating-posts-section"></div>')
 		source = $("#creating-posts-section-template").html()
 		template = Handlebars.compile(source)
 		data = { category: category.name }
@@ -115,6 +115,7 @@ class Gui
 		$("#creating-posts-section").html(html)
 
 	showAddingImageSection: (category) =>
+		$('#content').append('<div id="adding-image-section"></div>')
 		source = $("#adding-image-section-template").html()
 		template = Handlebars.compile(source)
 		data = { category: category.name }
@@ -122,6 +123,7 @@ class Gui
 		$("#adding-image-section").html(html)
 
 	showRegisterSection: (categories) =>
+		$('#content').append('<div id="register-section"></div>')
 		source = $("#register-section-template").html()
 		template = Handlebars.compile(source)
 		data = { categories: []}

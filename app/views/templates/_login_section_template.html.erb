@@ -1,16 +1,16 @@
 <script type="x-handlebars-template" id="login-section-template">
-	<form name="login_form" action="" method="GET">
-		<label for="user_name">User name:</label>
-		<input id="user_name" name="user_name" size="30" style="width:130px" type="text" />
+	<form name="login_form" action="" method="GET" class="form-inline">
+		<input id="user_name" name="user_name" size="30" style="width:130px" type="text"
+		placeholder="User name" class="input-small">
 
-		<label for="password">Passowrd: </label>
-		<input id="password" name="password" size="30" style="width:130px" type="text" />
+		<input id="password" name="password" size="30" style="width:130px" type="text"
+		placeholder="Password" class="input-small">
 			
-		<br>	
-		<input type="button" name="login" value="Login" onClick="useCase.login(this.form)">
+		<input type="button" name="login" 
+		value="Login" onClick="useCase.login(this.form)" class="btn btn-mini btn-inverse">
 
-		<br>
-		<input type="button" name="register" value="Register" onClick="useCase.showRegisterSection()">
+		<input type="button" name="register" 
+		value="Register" onClick="useCase.showRegisterSection()" class="btn btn-mini btn-inverse">
 
 	</form>
 </script>
