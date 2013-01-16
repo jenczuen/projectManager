@@ -75,6 +75,12 @@ describe "Categories" do
       response.body.should include "Guest can't create new categories!"
     end
     
+    it "when creating is not allowed, database counter shouldn't change" do
+      post '/api/categories/create', { name: "Cat", description: "desc" }
+
+      Category.count.should be(1)
+    end
+
     it "can't update a category" do
       post '/api/categories/update', { id: @category.id, name: "Cat", description: "desc" }
       
@@ -93,6 +99,13 @@ describe "Categories" do
       response.body.should include "Guest can't update categories!"
     end
     
+    it "when updating is not allowed, database shouldn't change" do
+      post '/api/categories/update', { id: @category.id, name: "Cat", description: "desc" }
+
+      Category.find(@category.id).name.should eq("Category")
+      Category.find(@category.id).description.should eq("Description")
+    end
+
     it "can't delete a category" do
       post '/api/categories/destroy', { id: @category.id }
       
@@ -109,6 +122,12 @@ describe "Categories" do
       post '/api/categories/destroy', { id: @category.id }
       
       response.body.should include "Guest can't delete categories!"
+    end
+
+    it "when deleting is not allowed, database counter shouldnt change" do
+      post '/api/categories/destroy', { id: @category.id }
+
+      Category.count.should be(1)
     end
   end
   
@@ -143,16 +162,31 @@ describe "Categories" do
     
     it "can create new category" do
       post '/api/categories/create', { name: "Cat", description: "desc" }
-      
+
       response.status.should be(200)
     end
     
     it "after create, response format is json" do
       post '/api/categories/create', { name: "Cat", description: "desc" }
-      
+
       response.header['Content-Type'].should include 'application/json' 
     end
+
+    it "creating category should increment categories counter" do
+      post '/api/categories/create', { name: "Cat", description: "desc" }
+
+      Category.count.should be(2)
+    end
     
+    it "after create category, it should be in database" do
+      post '/api/categories/create', { name: "Cat", description: "desc" }
+
+      category = Category.last
+
+      category.name.should eq("Cat")
+      category.description.should eq("desc")
+    end
+
     it "can update a category" do
       post '/api/categories/update', { id: @category.id, name: "Cat", description: "desc" }
       
@@ -163,6 +197,13 @@ describe "Categories" do
       post '/api/categories/update', { id: @category.id, name: "Cat", description: "desc" }
       
       response.header['Content-Type'].should include 'application/json' 
+    end
+
+    it "after update, category should have new values" do
+      post '/api/categories/update', { id: @category.id, name: "Cat", description: "desc" }
+
+      Category.find(@category.id).name.should eq("Cat")
+      Category.find(@category.id).description.should eq("desc")
     end
     
     it "can delete a category" do
@@ -177,6 +218,11 @@ describe "Categories" do
       response.header['Content-Type'].should include 'application/json' 
     end
     
+    it "deleting category should decrement categories counter" do
+      post '/api/categories/destroy', { id: @category.id }
+
+      Category.count.should be(0)
+    end
   end
   
   after do

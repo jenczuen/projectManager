@@ -2,62 +2,56 @@ class UsersController < ApplicationController
   def all
     users = User.all
 
-    respond_to do |format|
-      format.json { render json: users }
-    end
+    render json: users
   end
 
   def get
     user = User.find(params[:id])
 
-    respond_to do |format|
-      format.json { render json: user }
-    end
+    render json: user
   end
 
   def create
-    firstName   = params[:firstName]
-    secondName  = params[:secondName]
-    eMail       = params[:eMail]
-    description = params[:description]
-    
-    User.create(firstName:   firstName,
-                secondName:  secondName,
-                eMail:       eMail,
-                description: description)
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+    if signed_in?
+      render json: "You have to sign out to register new users!", status: 401
+    else
+      User.create(firstName: params[:first_name],
+                  secondName: params[:second_name],
+                  email: params[:email],
+                  description: params[:description],
+                  password: params[:password],
+                  password_confirmation: params[:password_confirmation])
+      
+      render json: :nothing, status: 200
     end
   end
   
   def update
-    firstName   = params[:firstName]
-    secondName  = params[:secondName]
-    eMail       = params[:eMail]
-    description = params[:description]
-    
-    user = User.find(params[:id])
+    if signed_in?
+      user = current_user
 
-    user.firstName = firstName
-    user.secondName = secondName
-    user.eMail = eMail
-    user.description = description
-
-    user.save
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+      User.update(firstName: params[:first_name],
+                  secondName: params[:second_name],
+                  email: params[:email],
+                  description: params[:description],
+                  password: params[:password],
+                  password_confirmation: params[:password_confirmation])
+      
+      render json: :nothing, status: 200
+    else
+      render json: "Guest can't update users!", status: 401
     end
   end
 
   def destroy
-    user = User.find(params[:id])
-
-    user.delete
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+    if signed_in?
+      user = current_user
+      
+      user.delete
+      
+      render json: :nothing, status: 200
+    else
+      render json: "Gust can't delete users!", status: 401
     end
   end
 end

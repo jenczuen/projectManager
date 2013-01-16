@@ -1,49 +1,50 @@
 class PostsController < ApplicationController
   def all
     posts = Post.all
-
-    respond_to do |format|
-      format.json { render json: posts }
-    end
+    
+    render json: posts
   end
 
   def get
     post = Post.find(params[:id])
 
-    respond_to do |format|
-      format.json { render json: post }
-    end
+    render json: post
   end
 
   def create
-    Post.create(title: params[:title],
-                content: params[:content])
+    if signed_in?
+      Post.create(title: params[:title],
+                  content: params[:content])
 
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+      render json: :nothing, :status => 200
+    else
+      render json: "Guest can't create new posts!", status: 401
     end
   end
   
   def update
-    post = Post.find(params[:id])
+    if signed_in?
+      post = Post.find(params[:id])
 
-    post.title = params[:title]
-    post.content = params[:content]
+      post.title = params[:title]
+      post.content = params[:content]
+      post.save
 
-    post.save
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+      render json: :nothing, :status => 200
+    else
+      render json: "Guest can't update posts!", status: 401
     end
   end
 
   def destroy
-    post = Post.find(params[:id])
+    if signed_in?
+      post = Post.find(params[:id])
 
-    post.delete
-
-    respond_to do |format|
-      format.all { render :nothing => true, :status => 200 }
+      post.delete
+      
+      render json: :nothing, :status => 200
+    else
+      render json: "Guest can't delete posts!", status: 401
     end
   end  
 end
