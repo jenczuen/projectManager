@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def all
     users = User.all
 
-    render json: users
+    render json: users.to_json(include: :categories) 
   end
 
   def get

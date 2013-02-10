@@ -30,37 +30,21 @@ class DatabaseApi
 		@categories
 
 	getUsers: =>
-		@users.add( new User(
-								"Jedrek",
-								"Siemienski",
-								"Absolwent polibudy bla bla",
-								[2, 3], 1
-							))
-		@users.add( new User(
-								"Michal",
-								"Banasiak",
-								"Artysta programista i mechanik pierwszej wody",
-								[1, 3], 2
-							))
-		@users.add( new User(
-								"Mechanik",
-								"Nowak",
-								"Super mechanior",
-								[1], 3
-							))
-		@users.add( new User(
-								"Elektronik",
-								"Kowalski",
-								"Elektronik jak ta lala",
-								[2], 4
-							))
-		@users.add( new User(
-								"Prezes",
-								"Zarzadu",
-								"Imie mowi samo za siebie",
-								[3], 
-								5
-							))
+		$.ajax({
+			url: '/api/users/all',
+			async: false,
+			dataType: 'json',
+			success: (data, status) => @saveJsonData(data)
+		})
+
+		for user in @json_data
+		    userCategories=[]
+		    
+		    for category in user.categories
+		    	userCategories.add(category.id)
+		    
+		    @users.add(new User(user.firstName,user.secondName,user.description,userCategories,user.id))
+
 		@users
 
 	getPosts: =>
