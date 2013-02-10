@@ -48,27 +48,16 @@ class DatabaseApi
 		@users
 
 	getPosts: =>
-		@posts.add( new Post(
-								"Zaczynamy!",
-								"Dzisiaj zaczelismy prace nad mechanika",
-								1, 2, 1
-							))
-		@posts.add( new Post(
-								"Zaczynamy!",
-								"Dzisiaj zaczelismy prace nad elektronika",
-								2, 1, 2
-							))
-		@posts.add( new Post(
-								"Zaczynamy!",
-								"Zagonilismy frajernie do pracy!",
-								3, 5, 3
-							))
-		@posts.add( new Post(
-								"Idzie spoko!",
-								"Juz mamy wszystkie katowniki",
-								1, 2, 4
-							))
+		$.ajax({
+			url: '/api/posts/all',
+			async: false,
+			dataType: 'json',
+			success: (data, status) => @saveJsonData(data)
+		})
 
+		for post in @json_data
+		    @posts.add(new Post(post.title,post.content,post.category_id,post.author_id,post.id))
+		
 		@posts
 
 	getImages: =>
@@ -98,51 +87,3 @@ class DatabaseApi
 							))
 
 		@images
-
-
-### database api 
-	getCategories: =>
-		for item in @json_data
-			@categories.add( new Category(
-											item.name,
-											item.description,
-											item.id
-										))
-		@categories
-
-	getUsers: =>
-		$.ajax({
-			url: '/getUsers.json',
-			async: false,
-			dataType: 'json',
-			success: (data, status) => @saveJsonData(data)
-		})
-		@users = []
-		for item in @json_data
-			@users.add( new User(
-									item.firstName,
-									item.secondName,
-									item.description,
-									item.categories,
-									item.id
-								))
-		@users
-
-	getPosts: =>
-		$.ajax({
-			url: '/getPostss.json',
-			async: false,
-			dataType: 'json',
-			success: (data, status) => @saveJsonData(data)
-		})
-		@posts = []
-		for item in @json_data
-			@posts.add( new Post(
-									item.title,
-									item.content,
-									item.category_id,
-									item.autor_id,
-									item.id
-								))
-		@posts
-###
