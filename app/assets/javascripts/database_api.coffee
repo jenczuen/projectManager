@@ -17,21 +17,16 @@ class DatabaseApi
 		@json_data = json_data
 
 	getCategories: =>
-		@categories.add( new Category(
-										"Mechanicy",
-										"Zespol mechanikow zajmujacych sie mechanika",
-										1
-									))
-		@categories.add( new Category(
-										"Elektronicy",
-										"Zespol elektronikow zajmujacych sie elektronika",
-										2
-									))
-		@categories.add( new Category(
-										"Zarzad",
-										"Najwiecej gadaja a najmniej robia",
-										3
-									))
+		$.ajax({
+			url: '/api/categories/all',
+			async: false,
+			dataType: 'json',
+			success: (data, status) => @saveJsonData(data)
+		})
+
+		for category in @json_data
+		    @categories.add( new Category(category.name,category.description,category.id))
+
 		@categories
 
 	getUsers: =>
@@ -123,13 +118,6 @@ class DatabaseApi
 
 ### database api 
 	getCategories: =>
-		$.ajax({
-			url: '/getCategories.json',
-			async: false,
-			dataType: 'json',
-			success: (data, status) => @saveJsonData(data)
-		})
-		@categories = []
 		for item in @json_data
 			@categories.add( new Category(
 											item.name,
